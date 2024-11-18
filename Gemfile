@@ -61,3 +61,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "neighbor", "~> 0.5.0"
+
+gem "ruby-openai", "~> 7.3"
+
+gem "image_processing", "~> 1.13"

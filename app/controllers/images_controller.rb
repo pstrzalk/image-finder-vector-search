@@ -6,6 +6,20 @@ class ImagesController < ApplicationController
     @images = Image.all
   end
 
+  def index
+    if params[:query].present?
+      client = OpenAI::Client.new(access_token: Rails.configuration.x.openai_api_key)
+
+      embedding = client
+        .embeddings(parameters: { model: "text-embedding-3-large", input: params[:query] })
+        .dig("data", 0, "embedding")
+
+      @images = Image.nearest_neighbors(:embedding, embedding, distance: "euclidean").first(1)
+    else
+      @images = Image.all
+    end
+  end
+
   # GET /images/1 or /images/1.json
   def show
   end
@@ -25,7 +39,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: "Image was successfully created." }
+        format.html { redirect_to :images, notice: "Image was successfully created." }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new, status: :unprocessable_entity }

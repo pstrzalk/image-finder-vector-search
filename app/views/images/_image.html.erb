@@ -1,7 +1,11 @@
-<div id="<%= dom_id image %>">
-  <p>
-    <strong>File:</strong>
-    <%= link_to image.file.filename, image.file if image.file.attached? %>
-  </p>
+<div id="<%= dom_id image %>" class="margin-top: 20px;">
+  <%= link_to image.file do %>
+    <%= image_tag(image.file.variant(resize_to_fit: [300, 200])) %>
+  <% end %>
 
+  <%= button_to "Delete this image", @image, method: :delete %>
+
+  <p>
+    <%= image.description%>
+  </p>
 </div>
