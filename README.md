@@ -1,6 +1,8 @@
-# Image Finder
+# Image Finder - Vector Search in Ruby on Rails
 
 A demo of image recognition and Vector Search using OpenAI and Ruby on Rails. It allows you to find uploaded images by their descriptions.
+
+For more information, check the Ruby & AI series of articles at https://www.visuality.pl/posts/llm-embeddings-in-ruby and my presentation on embeddings, Vector Search and RAG in Ruby at https://www.youtube.com/watch?v=KxGZv7Z4BQs
 
 ## How to use it
 
